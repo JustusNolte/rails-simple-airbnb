@@ -3,7 +3,56 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <%= render 'form' %>
+      <%= form_with model: @flat, local: true, class: "form-horizontal" do |form| %>
+        <% if @flat.errors.any? %>
+          <div class="alert alert-danger">
+            <h4><%= pluralize(@flat.errors.count, "error") %> prohibited this flat from being saved:</h4>
+            <ul>
+              <% @flat.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= form.label :name, class: "form-label" %>
+          <%= form.text_field :name, class: "form-control", placeholder: "Enter your flat name", autofocus: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :address, class: "form-label" %>
+          <%= form.text_field :address, class: "form-control", placeholder: "Enter your flat address" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :description, class: "form-label" %>
+          <%= form.text_area :description, class: "form-control", placeholder: "Describe your flat" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :price_per_night, class: "form-label" %>
+          <%= form.number_field :price_per_night, class: "form-control", placeholder: "Enter price per night" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :number_of_guests, class: "form-label" %>
+          <%= form.number_field :number_of_guests, class: "form-control", placeholder: "Enter the number of guests" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :picture_url, class: "form-label" %>
+          <%= form.text_field :picture_url, class: "form-control", placeholder: "Enter URL of the picture" %>
+        </div>
+
+        <div class="d-grid">
+          <%= form.submit "Create Flat", class: "btn btn-primary btn-lg" %>
+        </div>
+      <% end %>
+
+      <div class="text-center mt-4">
+        <%= link_to 'Back to Flats', flats_path, class: "btn btn-secondary" %>
+      </div>
     </div>
   </div>
 </div>
