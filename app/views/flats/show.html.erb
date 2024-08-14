@@ -3,6 +3,9 @@
     <div class="col-12">
       <h1 class="display-4"><%= @flat.name %></h1>
       <p class="lead"><%= @flat.address %></p>
+      <% if @flat.picture_url.present? %>
+        <img src="<%= @flat.picture_url %>" class="img-fluid mb-4" alt="<%= @flat.name %>">
+      <% end %>
       <div class="d-flex">
         <%= link_to 'Edit', edit_flat_path(@flat), class: 'btn btn-warning me-2' %>
         <%= link_to 'Delete', flat_path(@flat), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>

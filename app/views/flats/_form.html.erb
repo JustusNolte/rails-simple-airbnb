@@ -35,6 +35,11 @@
     <%= form.number_field :number_of_guests, class: "form-control" %>
   </div>
 
+  <div class="mb-3">
+    <%= form.label :picture_url, class: "form-label" %>
+    <%= form.text_field :picture_url, class: "form-control", placeholder: "Enter URL of the picture" %>
+  </div>
+
   <%= form.submit class: "btn btn-primary" %>
   <%= link_to 'Back', flats_path, class: "btn btn-secondary" %>
 <% end %>

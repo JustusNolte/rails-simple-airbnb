@@ -1,12 +1,24 @@
 <h1 class="text-center mb-5">Available Flats</h1>
 
-<%= link_to 'Add a New Flat', new_flat_path, class: 'btn btn-primary mb-4' %>
+<div class="container mb-4">
+  <%= form_with url: flats_path, method: :get, local: true do %>
+    <div class="input-group">
+      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search for a flat..." %>
+      <div class="input-group-append">
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <div class="container">
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @flats.each_with_index do |flat, index| %>
       <div class="col">
         <div class="card h-100">
+          <% if flat.picture_url.present? %>
+            <img src="<%= flat.picture_url %>" class="card-img-top" alt="<%= flat.name %>">
+          <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= link_to flat.name, flat_path(flat), class: "text-decoration-none" %></h5>
             <p class="card-text"><i class="fas fa-map-marker-alt"></i> <%= flat.address %></p>
